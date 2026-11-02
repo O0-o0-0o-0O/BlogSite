@@ -3,6 +3,10 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller.js';
 import { AppService } from './app.service.js';
+import { UsersModule } from './users/users.module.js';
+import { ArticlesModule } from './articles/articles.module.js';
+import { CommentsModule } from './comments/comments.module.js';
+import { TagsModule } from './tags/tags.module.js';
 
 @Module({
   imports: [
@@ -23,6 +27,10 @@ import { AppService } from './app.service.js';
         synchronize: configService.get<string>('NODE_ENV') !== 'production',
       }),
     }),
+    UsersModule,
+    ArticlesModule,
+    CommentsModule,
+    TagsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -25,6 +25,33 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## このプロジェクトについて (学習用ブログAPI)
+
+NestJS + TypeORM + PostgreSQLで作る学習用ブログAPI(User/Article/Comment/Tag)。
+ER図は [docs/er-diagram.md](docs/er-diagram.md) を参照。
+
+### セットアップ
+
+```bash
+make install     # 依存インストール
+make reset-db    # Postgres起動 + マイグレーション + テストデータ投入
+make dev         # 開発サーバー起動 (http://localhost:3000)
+```
+
+### よく使うコマンド
+
+```bash
+make up                              # Postgresコンテナ起動
+make down                            # Postgresコンテナ停止
+make migration-generate name=AddFoo  # エンティティの差分からマイグレーション生成
+make migration-run                   # 未適用のマイグレーションを実行
+make migration-revert                # 直前のマイグレーションを取り消す
+make seed                            # テストデータ投入
+make test                            # テスト実行
+```
+
+スキーマは `synchronize: false` のため、エンティティを変更したら `make migration-generate name=...` → `make migration-run` が必要です。
+
 ## Project setup
 
 ```bash

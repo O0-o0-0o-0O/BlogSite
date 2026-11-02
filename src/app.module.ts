@@ -23,8 +23,9 @@ import { TagsModule } from './tags/tags.module.js';
         database: configService.get<string>('DB_NAME', 'nest_blog'),
         // 今後 *.module.ts で TypeOrmModule.forFeature([Entity]) すれば自動で読み込まれる
         autoLoadEntities: true,
-        // 学習用: マイグレーション無しでスキーマを自動同期する(本番では使わない)
-        synchronize: configService.get<string>('NODE_ENV') !== 'production',
+        // スキーマは migration:run で作る運用にするため、自動同期は常にオフ
+        synchronize: false,
+        migrations: ['dist/migrations/*.js'],
       }),
     }),
     UsersModule,
